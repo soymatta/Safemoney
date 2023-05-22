@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'SetCurrency.dart';
+import 'DashboardPage.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class SetBalance extends StatefulWidget {
+  const SetBalance({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<SetBalance> createState() => _SetBalanceState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SetBalanceState extends State<SetBalance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,57 +48,45 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: Color(0xCCFFFFFF),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(75),
-                          child: Image.asset(
-                            'assets/imgs/LogoApp.jpg',
-                            width: 150,
-                            height: 150,
-                            fit: BoxFit.cover,
-                          ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          'assets/imgs/dollar.png',
+                          width: 150,
+                          height: 150,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 44),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Text(
-                        'Welcome!',
+                        'Set up your balance',
                         style: GoogleFonts.openSans(
-                          fontSize: 36,
-                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
                           color: Colors.black,
                         ),
                       ),
                     ),
+                    TextField(
+                      decoration: InputDecoration(
+                          labelText: "Enter your current balance"),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                    ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(44, 8, 44, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
                       child: Text(
-                        'We are SafeMoney, an app that will help you track your expenses and income, knowing where you spend your money, your mandatory expenses, necessary expenses, savings and goals.',
-                        textAlign: TextAlign.center,
+                        'Your current currency can then be changed in settings, all currency data will be displayed in the current settings.',
                         style: GoogleFonts.openSans(
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF57636C),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Text(
-                        'Enjoy SafeMoney',
-                        style: GoogleFonts.openSans(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF757575),
                         ),
                       ),
                     ),
@@ -121,14 +110,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SetCurrency(
-                                title: 'SetCurrency',
+                              builder: (context) => DashboardPage(
+                                title: 'DashboardPage',
                               ),
                             ),
                           );
                         },
                         child: Text(
-                          'Get Started!',
+                          'Next!',
                           style: GoogleFonts.openSans(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,

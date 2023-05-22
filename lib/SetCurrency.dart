@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'SetBalance.dart';
 
 class SetCurrency extends StatefulWidget {
   const SetCurrency({super.key, required this.title});
@@ -17,42 +18,44 @@ class _SetCurrencyState extends State<SetCurrency> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        top: true,
-        child: Stack(
-          children: [
-            Align(
-              alignment: AlignmentDirectional(0, 0),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              height: 500,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xFF43E576), Color(0xFFF1F4F8)],
+                  stops: [0, 1],
+                  begin: AlignmentDirectional.topStart,
+                  end: AlignmentDirectional.bottomEnd,
+                ),
+              ),
+              child: Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0x00FFFFFF), Colors.white],
+                    stops: [0, 1],
+                    begin: AlignmentDirectional.topCenter,
+                    end: AlignmentDirectional.bottomCenter,
+                  ),
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'Hi, welcome to ',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.openSans(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Text(
-                      'SafeMoney',
-                      style: GoogleFonts.openSans(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF43E576),
-                      ),
-                    ),
+                    
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          'assets/imgs/LogoApp.jpg',
+                          'assets/imgs/currency-symbols.png',
                           width: 150,
                           height: 150,
                           fit: BoxFit.cover,
@@ -62,7 +65,7 @@ class _SetCurrencyState extends State<SetCurrency> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Text(
-                        'Select yor currency',
+                        'Select your currency',
                         style: GoogleFonts.openSans(
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
@@ -90,7 +93,7 @@ class _SetCurrencyState extends State<SetCurrency> {
                       }).toList(),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      padding: EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
                       child: Text(
                         'Your current currency can then be changed in settings, all currency data will be displayed in the current settings.',
                         style: GoogleFonts.openSans(
@@ -104,33 +107,50 @@ class _SetCurrencyState extends State<SetCurrency> {
                 ),
               ),
             ),
-            Align(
-              alignment: AlignmentDirectional(0, 1),
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SetCurrency(
-                              title: 'SetCurrency',
-                            )),
-                  );
-                },
-                child: Text(
-                  'Get Started!',
-                  style: GoogleFonts.openSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(16, 24, 16, 44),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 8, bottom: 16),
+                      child: MaterialButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SetBalance(
+                                title: 'SetBalance',
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Next!',
+                          style: GoogleFonts.openSans(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                        color: Color(0xFF43E576),
+                        minWidth: double.infinity,
+                        height: 50,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-                color: Color(0xFF43E576),
-                minWidth: double.infinity,
-                height: 50,
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

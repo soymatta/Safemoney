@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'SetBalance.dart';
+import 'SetCurrencyPage.dart';
 
-class SetCurrency extends StatefulWidget {
-  const SetCurrency({super.key, required this.title});
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<SetCurrency> createState() => _SetCurrencyState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _SetCurrencyState extends State<SetCurrency> {
-  String dropdownValue = 'Select an option...';
-
+class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,57 +47,57 @@ class _SetCurrencyState extends State<SetCurrency> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          'assets/imgs/currency-symbols.png',
-                          width: 150,
-                          height: 150,
-                          fit: BoxFit.cover,
+                    Container(
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Color(0xCCFFFFFF),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(75),
+                          child: Image.asset(
+                            'assets/imgs/LogoApp.jpg',
+                            width: 150,
+                            height: 150,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      padding: EdgeInsets.only(top: 44),
                       child: Text(
-                        'Select your currency',
+                        'Welcome!',
                         style: GoogleFonts.openSans(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 36,
+                          fontWeight: FontWeight.w600,
                           color: Colors.black,
                         ),
                       ),
                     ),
-                    DropdownButton<String>(
-                      value: dropdownValue,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue = newValue!;
-                        });
-                      },
-                      items: <String>[
-                        'Select an option...',
-                        'EUR - Euro',
-                        'COP - Colombian Peso',
-                        'USD - United States Dollar'
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
+                      padding: EdgeInsets.fromLTRB(44, 8, 44, 0),
                       child: Text(
-                        'Your current currency can then be changed in settings, all currency data will be displayed in the current settings.',
+                        'We are SafeMoney, an app that will help you track your expenses and income, knowing where you spend your money, your mandatory expenses, necessary expenses, savings and goals.',
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xFF757575),
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF57636C),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Text(
+                        'Enjoy SafeMoney',
+                        style: GoogleFonts.openSans(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -123,14 +121,14 @@ class _SetCurrencyState extends State<SetCurrency> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SetBalance(
-                                title: 'SetBalance',
+                              builder: (context) => SetCurrencyPage(
+                                title: 'SetCurrencyPage',
                               ),
                             ),
                           );
                         },
                         child: Text(
-                          'Next!',
+                          'Get Started!',
                           style: GoogleFonts.openSans(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,

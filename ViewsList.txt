@@ -1,0 +1,16 @@
+Vistas de la aplicacion en figma
+- WelcomePage(1) ( Pagina para explicar para es la aplicaccion )
+- SetCurrencyPage(2) ( Seleccionar la divisa que se utiliza en toda la app )
+- SetBalancePage(3) ( Colocar el saldo inicial para utilizar la app )
+
+- HomePage(4) ( Resumen del presupuesto actual, el gasto total, el presupuesto asignado y el saldo restante.
+Gráficos o visualizaciones mostrando el progreso del presupuesto.
+Boton para agregar un nuevo gasto, ver el historial de gastos, agregar ingreso, historial de ingresos)
+
+- SettingsView(HomePage) ( Para modificar las divisas y borrar todos los datos del  )
+- AddExpenseView(HomePage) ( Pestaña para agregar un gasto, frecuencia de gasto, nombre de gasto y valor del gasto )
+(Frecuencia de gastos: Diario, Semanal, Mensual, el dia exacto, Gasto espontaneo)
+
+- ExpenseHistoryView(Settings) ( Lista de Gastos con su fecha y tipo )
+- AddIncomeView(HomePage) ( Mismo que AddExpense pero para ingresos )
+- IncomeHistoryView(settings) ( Mismo que ExpenseHistory pero para ingresos )

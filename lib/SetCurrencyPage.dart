@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'DashboardPage.dart';
+import 'SetBalancePage.dart';
 
-class SetBalance extends StatefulWidget {
-  const SetBalance({super.key, required this.title});
+class SetCurrencyPage extends StatefulWidget {
+  const SetCurrencyPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<SetBalance> createState() => _SetBalanceState();
+  State<SetCurrencyPage> createState() => _SetCurrencyPageState();
 }
 
-class _SetBalanceState extends State<SetBalance> {
+class _SetCurrencyPageState extends State<SetCurrencyPage> {
+  String dropdownValue = 'Select an option...';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +54,7 @@ class _SetBalanceState extends State<SetBalance> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          'assets/imgs/dollar.png',
+                          'assets/imgs/currency-symbols.png',
                           width: 150,
                           height: 150,
                           fit: BoxFit.cover,
@@ -63,7 +64,7 @@ class _SetBalanceState extends State<SetBalance> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Text(
-                        'Set up your balance',
+                        'Select your currency',
                         style: GoogleFonts.openSans(
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
@@ -71,13 +72,24 @@ class _SetBalanceState extends State<SetBalance> {
                         ),
                       ),
                     ),
-                    TextField(
-                      decoration: InputDecoration(
-                          labelText: "Enter your current balance"),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
+                    DropdownButton<String>(
+                      value: dropdownValue,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                      items: <String>[
+                        'Select an option...',
+                        'EUR - Euro',
+                        'COP - Colombian Peso',
+                        'USD - United States Dollar'
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
@@ -110,8 +122,8 @@ class _SetBalanceState extends State<SetBalance> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DashboardPage(
-                                title: 'DashboardPage',
+                              builder: (context) => SetBalancePage(
+                                title: 'SetBalancePage',
                               ),
                             ),
                           );

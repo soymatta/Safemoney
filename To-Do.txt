@@ -1,0 +1,3 @@
+- Agregar boton de retroceder en las pestañas necesarias
+- Probar el SafeArea en el movil
+- Simplificar el degradado de fondo de las paginas hechas

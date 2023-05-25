@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'SetCurrencyPage.dart';
+import 'SettingsView.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key, required this.title});
@@ -121,7 +122,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SetCurrencyPage(
+                              builder: (context) => SettingsView(
                                 title: 'SetCurrencyPage',
                               ),
                             ),

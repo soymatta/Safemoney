@@ -1,10 +1,12 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'SetBalancePage.dart';
 import 'main.dart';
 
 class SetCurrencyPage extends StatefulWidget {
-  const SetCurrencyPage({super.key, required this.title});
+  const SetCurrencyPage({Key? key, required this.title});
 
   final String title;
 
@@ -25,7 +27,7 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
             child: Container(
               width: double.infinity,
               height: 500,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFF43E576), Color(0xFFF1F4F8)],
                   stops: [0, 1],
@@ -36,7 +38,7 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
               child: Container(
                 width: 100,
                 height: 100,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Color(0x00FFFFFF), Colors.white],
                     stops: [0, 1],
@@ -49,7 +51,7 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 60),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
@@ -61,7 +63,7 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                       child: Text(
                         'Select your currency',
                         style: GoogleFonts.openSans(
@@ -91,13 +93,13 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       }).toList(),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
+                      padding: const EdgeInsets.fromLTRB(44, 10, 44, 10),
                       child: Text(
                         'Your current currency can then be changed in settings, all currency data will be displayed in the current settings.',
                         style: GoogleFonts.openSans(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xFF757575),
+                          color: const Color(0xFF757575),
                         ),
                       ),
                     ),
@@ -107,7 +109,7 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(16, 24, 16, 44),
+            padding: const EdgeInsets.fromLTRB(16, 24, 16, 44),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -115,14 +117,14 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                   child: Align(
                     alignment: Alignment.center,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 8, bottom: 16),
+                      padding: const EdgeInsets.only(left: 8, bottom: 16),
                       child: MaterialButton(
                         onPressed: () {
                           if (MyApp.currency != 'Select an option...') {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SetBalancePage(
+                                builder: (context) => const SetBalancePage(
                                   title: 'SetBalancePage',
                                 ),
                               ),
@@ -132,15 +134,15 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text('Invalid selection'),
-                                  content:
-                                      Text('Please select a different option.'),
+                                  title: const Text('Invalid selection'),
+                                  content: const Text(
+                                      'Please select a different option.'),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text('OK'),
+                                      child: const Text('OK'),
                                     ),
                                   ],
                                 );
@@ -148,6 +150,12 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                             );
                           }
                         },
+                        color: const Color(0xFF43E576),
+                        minWidth: double.infinity,
+                        height: 50,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: Text(
                           'Next!',
                           style: GoogleFonts.openSans(
@@ -155,12 +163,6 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),
-                        ),
-                        color: Color(0xFF43E576),
-                        minWidth: double.infinity,
-                        height: 50,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                     ),

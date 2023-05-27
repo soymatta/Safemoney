@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'SetCurrencyPage.dart';
@@ -26,7 +28,7 @@ class _WelcomePageState extends State<WelcomePage> {
               height: 500,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color(0xFF43E576), Color(0xFFF1F4F8)],
+                  colors: [const Color(0xFF43E576), Color(0xFFF1F4F8)],
                   stops: [0, 1],
                   begin: AlignmentDirectional.topStart,
                   end: AlignmentDirectional.bottomEnd,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:safemoney/ExpenseHistoryView.dart';
-import 'package:safemoney/IncomeHistoryView.dart';
+import 'ExpenseHistoryView.dart';
+import 'IncomeHistoryView.dart';
 import 'main.dart';
 
 class SettingsView extends StatefulWidget {
@@ -27,7 +27,7 @@ class _SettingsViewState extends State<SettingsView> {
         backgroundColor: Color(0xFF43E576),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -58,7 +58,7 @@ class _SettingsViewState extends State<SettingsView> {
                 );
               }).toList(),
             ),
-            Divider(
+            const Divider(
               color: Colors.grey,
               thickness: 2.0,
             ),
@@ -67,7 +67,7 @@ class _SettingsViewState extends State<SettingsView> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => IncomeHistoryView(
+                    builder: (context) => const IncomeHistoryView(
                       title: 'IncomeHistoryView',
                     ),
                   ),
@@ -88,7 +88,7 @@ class _SettingsViewState extends State<SettingsView> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ExpenseHistoryView(
+                    builder: (context) => const ExpenseHistoryView(
                       title: 'ExpenseHistoryView',
                     ),
                   ),
@@ -104,7 +104,7 @@ class _SettingsViewState extends State<SettingsView> {
                 ),
               ),
             ),
-            Divider(
+            const Divider(
               color: Colors.grey,
               thickness: 2.0,
             ),
@@ -114,18 +114,18 @@ class _SettingsViewState extends State<SettingsView> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text('Confirm'),
-                      content:
-                          Text('Are you sure you want to delete all data?'),
+                      title: const Text('Confirm'),
+                      content: const Text(
+                          'Are you sure you want to delete all data?'),
                       actions: [
                         TextButton(
-                          child: Text('No'),
+                          child: const Text('No'),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
                         ),
                         TextButton(
-                          child: Text('Yes'),
+                          child: const Text('Yes'),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safemoney/main.dart';
 import 'HomePage.dart';
 
 class SetBalancePage extends StatefulWidget {
@@ -71,14 +72,19 @@ class _SetBalancePageState extends State<SetBalancePage> {
                         ),
                       ),
                     ),
-                    TextField(
-                      decoration: InputDecoration(
-                          labelText: "Enter your current balance"),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                    ),
+                    Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(40, 0, 40, 0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              labelText: "Enter your current balance"),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          onChanged: (value) {
+                            MyApp.balance = int.parse(value);
+                          },
+                        )),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
                       child: Text(

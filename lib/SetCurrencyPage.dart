@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'SetBalancePage.dart';
+import 'main.dart';
 
 class SetCurrencyPage extends StatefulWidget {
   const SetCurrencyPage({super.key, required this.title});
@@ -12,8 +13,6 @@ class SetCurrencyPage extends StatefulWidget {
 }
 
 class _SetCurrencyPageState extends State<SetCurrencyPage> {
-  String dropdownValue = 'Select an option...';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,10 +72,10 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       ),
                     ),
                     DropdownButton<String>(
-                      value: dropdownValue,
+                      value: MyApp.currency,
                       onChanged: (String? newValue) {
                         setState(() {
-                          dropdownValue = newValue!;
+                          MyApp.currency = newValue!;
                         });
                       },
                       items: <String>[
@@ -119,14 +118,35 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       padding: EdgeInsets.only(left: 8, bottom: 16),
                       child: MaterialButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SetBalancePage(
-                                title: 'SetBalancePage',
+                          if (MyApp.currency != 'Select an option...') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SetBalancePage(
+                                  title: 'SetBalancePage',
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Invalid selection'),
+                                  content:
+                                      Text('Please select a different option.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         },
                         child: Text(
                           'Next!',

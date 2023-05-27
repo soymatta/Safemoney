@@ -1,3 +1,3 @@
-- Agregar boton de retroceder en las pestañas necesarias
-- Probar el SafeArea en el movil
-- Simplificar el degradado de fondo de las paginas hechas
+- Hacer las animaciones para cambiar de pagina a pagina
+- Cambiar la divisa en los ajustes 
+- Colocar la divisa con su abreviatura 

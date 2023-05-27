@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'SetCurrencyPage.dart';
-import 'SettingsView.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key, required this.title});
@@ -60,8 +59,8 @@ class _WelcomePageState extends State<WelcomePage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(75),
                           child: Image.asset(
-                            'assets/imgs/LogoApp.jpg',
-                            width: 150,
+                            'assets/imgs/icon.png',
+                            width: 1505,
                             height: 150,
                             fit: BoxFit.cover,
                           ),
@@ -122,7 +121,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SettingsView(
+                              builder: (context) => SetCurrencyPage(
                                 title: 'SetCurrencyPage',
                               ),
                             ),

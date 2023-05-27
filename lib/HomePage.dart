@@ -1,6 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:safemoney/main.dart';
+import 'main.dart';
 import 'SettingsView.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,15 +26,15 @@ class _HomePageState extends State<HomePage> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Color(0xFF43E576),
+        backgroundColor: const Color(0xFF43E576),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SettingsView(
+                  builder: (context) => const SettingsView(
                     title: 'SettingsView',
                   ),
                 ),
@@ -42,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

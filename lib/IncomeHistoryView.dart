@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,9 +23,9 @@ class _IncomeHistoryViewState extends State<IncomeHistoryView> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Color(0xFF43E576),
+        backgroundColor: const Color(0xFF43E576),
       ),
-      body: Padding(
+      body: const Padding(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

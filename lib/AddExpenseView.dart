@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 
 class AddExpenseView extends StatefulWidget {
+  static const String routeName = 'NewExpense';
+
   const AddExpenseView({super.key});
 
   @override

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:safemoney/HomePage.dart';
+import 'package:safemoney/SettingsView.dart';
 import 'WelcomePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
-
-  // Variables globales
-  static int balance = 0;
-  static String currency = 'Select an option...';
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,23 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green),
       ),
-      home: const WelcomePage(title: 'SafeMoney welcome page'),
+      initialRoute: WelcomePage.routeName,
+      routes: {
+        WelcomePage.routeName: (context) => const WelcomePage(),
+        HomePage.routeName: (context) => const HomePage(),
+        SettingsView.routeName: (context) => const SettingsView(),
+      },
     );
   }
+}
+
+// Funciones del shared preferences
+Future<void> saveData(String key, String value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString(key, value);
+}
+
+Future<String> loadData(String key) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString(key) ?? '';
 }

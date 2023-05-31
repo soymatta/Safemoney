@@ -1,15 +1,12 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'main.dart';
 import 'HomePage.dart';
 
 class SetBalancePage extends StatefulWidget {
-  const SetBalancePage({super.key, required this.title});
+  static const String routeName = 'Balance';
 
-  final String title;
+  const SetBalancePage({super.key});
 
   @override
   State<SetBalancePage> createState() => _SetBalancePageState();
@@ -52,8 +49,7 @@ class _SetBalancePageState extends State<SetBalancePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
@@ -65,8 +61,7 @@ class _SetBalancePageState extends State<SetBalancePage> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Text(
                         'Set up your balance',
                         style: GoogleFonts.openSans(
@@ -77,8 +72,7 @@ class _SetBalancePageState extends State<SetBalancePage> {
                       ),
                     ),
                     Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(40, 0, 40, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 40, 0),
                         child: TextField(
                           decoration: const InputDecoration(
                               labelText: "Enter your current balance"),
@@ -86,13 +80,10 @@ class _SetBalancePageState extends State<SetBalancePage> {
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          onChanged: (value) {
-                            MyApp.balance = int.parse(value);
-                          },
+                          onChanged: (value) {},
                         )),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
+                      padding: const EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
                       child: Text(
                         'Your current currency can then be changed in settings, all currency data will be displayed in the current settings.',
                         style: GoogleFonts.openSans(
@@ -122,9 +113,7 @@ class _SetBalancePageState extends State<SetBalancePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomePage(
-                                title: 'DashboardPage',
-                              ),
+                              builder: (context) => const HomePage(),
                             ),
                           );
                         },

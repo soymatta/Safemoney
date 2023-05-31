@@ -1,12 +1,10 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class IncomeHistoryView extends StatefulWidget {
-  const IncomeHistoryView({super.key, required this.title});
+  static const String routeName = 'Incomes';
 
-  final String title;
+  const IncomeHistoryView({super.key});
 
   @override
   State<IncomeHistoryView> createState() => _IncomeHistoryViewState();

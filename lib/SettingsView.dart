@@ -1,19 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'ExpenseHistoryView.dart';
-import 'IncomeHistoryView.dart';
-import 'main.dart';
+import 'package:safemoney/ExpenseHistoryView.dart';
+import 'package:safemoney/IncomeHistoryView.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsView extends StatefulWidget {
-  const SettingsView({Key? key, required this.title});
+  static const String routeName = 'Settings';
 
-  final String title;
+  const SettingsView({Key? key}) : super(key: key);
 
   @override
-  State<SettingsView> createState() => _SettingsViewState();
+  _SettingsViewState createState() => _SettingsViewState();
 }
 
 class _SettingsViewState extends State<SettingsView> {
+  late SharedPreferences _prefs;
+  late String _currency;
+
+  @override
+  void initState() {
+    super.initState();
+    loadCurrency();
+  }
+
+  Future<void> loadCurrency() async {
+    _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _currency = _prefs.getString('currency') ?? 'Select an option...';
+    });
+  }
+
+  Future<void> saveCurrency(String newCurrency) async {
+    setState(() {
+      _currency = newCurrency;
+    });
+    await _prefs.setString('currency', newCurrency);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +47,7 @@ class _SettingsViewState extends State<SettingsView> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Color(0xFF43E576),
+        backgroundColor: const Color(0xFF43E576),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -40,11 +63,34 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             DropdownButton<String>(
-              value: MyApp.currency,
+              value: _currency,
               onChanged: (String? newValue) {
                 setState(() {
-                  MyApp.currency = newValue!;
+                  _currency = newValue!;
                 });
+
+                if (_currency == 'Select an option...') {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Invalid selection'),
+                        content: const Text('Please select a different option.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                } else {
+                  // Guardar el valor seleccionado en shared_preferences
+                  saveCurrency(newValue!);
+                }
               },
               items: <String>[
                 'Select an option...',
@@ -67,9 +113,7 @@ class _SettingsViewState extends State<SettingsView> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const IncomeHistoryView(
-                      title: 'IncomeHistoryView',
-                    ),
+                    builder: (context) => const IncomeHistoryView(),
                   ),
                 );
               },
@@ -88,9 +132,7 @@ class _SettingsViewState extends State<SettingsView> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ExpenseHistoryView(
-                      title: 'ExpenseHistoryView',
-                    ),
+                    builder: (context) => const ExpenseHistoryView(),
                   ),
                 );
               },
@@ -115,8 +157,8 @@ class _SettingsViewState extends State<SettingsView> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: const Text('Confirm'),
-                      content: const Text(
-                          'Are you sure you want to delete all data?'),
+                      content:
+                          const Text('Are you sure you want to delete all data?'),
                       actions: [
                         TextButton(
                           child: const Text('No'),

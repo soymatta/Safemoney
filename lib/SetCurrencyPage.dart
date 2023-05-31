@@ -1,20 +1,23 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'SetBalancePage.dart';
 import 'main.dart';
 
 class SetCurrencyPage extends StatefulWidget {
-  const SetCurrencyPage({Key? key, required this.title});
+  static const String routeName = 'Currency';
 
-  final String title;
-
+  const SetCurrencyPage({Key? key}) : super(key: key);
   @override
-  State<SetCurrencyPage> createState() => _SetCurrencyPageState();
+  _SetCurrencyPageState createState() => _SetCurrencyPageState();
 }
 
 class _SetCurrencyPageState extends State<SetCurrencyPage> {
+  String currency = "Select an option...";
+
+  Future<void> saveCurrency() async {
+    await saveData('currency', currency);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +54,7 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 60),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
@@ -63,7 +66,7 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Text(
                         'Select your currency',
                         style: GoogleFonts.openSans(
@@ -74,11 +77,12 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       ),
                     ),
                     DropdownButton<String>(
-                      value: MyApp.currency,
+                      value: currency,
                       onChanged: (String? newValue) {
                         setState(() {
-                          MyApp.currency = newValue!;
+                          currency = newValue!;
                         });
+                        saveCurrency(); // Guardar la variable currency en shared_preferences
                       },
                       items: <String>[
                         'Select an option...',
@@ -93,7 +97,7 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       }).toList(),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(44, 10, 44, 10),
+                      padding: const EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
                       child: Text(
                         'Your current currency can then be changed in settings, all currency data will be displayed in the current settings.',
                         style: GoogleFonts.openSans(
@@ -120,13 +124,11 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       padding: const EdgeInsets.only(left: 8, bottom: 16),
                       child: MaterialButton(
                         onPressed: () {
-                          if (MyApp.currency != 'Select an option...') {
+                          if (currency != 'Select an option...') {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const SetBalancePage(
-                                  title: 'SetBalancePage',
-                                ),
+                                builder: (context) => const SetBalancePage(),
                               ),
                             );
                           } else {
@@ -135,8 +137,8 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   title: const Text('Invalid selection'),
-                                  content: const Text(
-                                      'Please select a different option.'),
+                                  content:
+                                      const Text('Please select a different option.'),
                                   actions: [
                                     TextButton(
                                       onPressed: () {

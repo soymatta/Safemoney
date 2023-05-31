@@ -1,20 +1,35 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'main.dart';
+import 'package:safemoney/AddExpenseView.dart';
+import 'package:safemoney/AddIncomeView.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'SettingsView.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
+  static const String routeName = 'Dashboard';
 
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  String currency = "Select an option..."; // Valor inicial mientras se carga
+
+  @override
+  void initState() {
+    super.initState();
+    loadCurrency();
+  }
+
+  Future<void> loadCurrency() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      currency = prefs.getString('currency') ?? 'Select an option...';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +49,12 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SettingsView(
-                    title: 'SettingsView',
-                  ),
+                  builder: (context) => const SettingsView(),
                 ),
-              );
+              ).then((_) {
+                // Actualizar el valor de currency después de regresar de SettingsView
+                loadCurrency();
+              });
             },
           ),
         ],
@@ -57,12 +73,45 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Text(
-              '${MyApp.balance} ${MyApp.currency}',
+              'Currency: $currency', // Usar el valor de currency
               style: GoogleFonts.openSans(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
               ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FloatingActionButton(
+              backgroundColor: Colors.red,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddExpenseView(),
+                  ),
+                );
+              },
+              child: const Icon(Icons.attach_money),
+            ),
+            const SizedBox(height: 16),
+            FloatingActionButton(
+              backgroundColor: Colors.green,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddIncomeView(),
+                  ),
+                );
+              },
+              child: const Icon(Icons.attach_money),
             ),
           ],
         ),

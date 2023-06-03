@@ -1,34 +1,72 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+ubeiimport 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+
+class Income {
+  String type;
+  double amount;
+  int frequency;
+
+  Income({
+    required this.type,
+    required this.amount,
+    required this.frequency,
+  });
+
+  factory Income.fromJson(Map<String, dynamic> json) {
+    return Income(
+      type: json['type'],
+      amount: json['amount'],
+      frequency: json['frequency'],
+    );
+  }
+}
 
 class IncomeHistoryView extends StatefulWidget {
-  static const String routeName = 'Incomes';
-
-  const IncomeHistoryView({super.key});
+  const IncomeHistoryView({Key? key}) : super(key: key);
 
   @override
-  State<IncomeHistoryView> createState() => _IncomeHistoryViewState();
+  _IncomeHistoryViewState createState() => _IncomeHistoryViewState();
 }
 
 class _IncomeHistoryViewState extends State<IncomeHistoryView> {
+  List<Income> incomes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadIncomes();
+  }
+
+  void _loadIncomes() async {
+    final prefs = await SharedPreferences.getInstance();
+    final encodedIncomes = prefs.getStringList('incomes');
+
+    if (encodedIncomes != null) {
+      setState(() {
+        incomes = encodedIncomes
+            .map((income) => Income.fromJson(jsonDecode(income)))
+            .toList();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Income Logs',
-          style: GoogleFonts.openSans(
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: const Color(0xFF43E576),
+        title: Text('Income History'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [],
-        ),
+      body: ListView.builder(
+        itemCount: incomes.length,
+        itemBuilder: (context, index) {
+          final income = incomes[index];
+          return ListTile(
+            title: Text(income.type),
+            subtitle: Text('Amount: ${income.amount.toStringAsFixed(2)}'),
+            trailing: Text('Frequency (Days): ${income.frequency}'),
+          );
+        },
       ),
     );
   }

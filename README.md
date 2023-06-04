@@ -1,6 +1,6 @@
 # SafeMoney - Control de presupuesto
 
-<img align="left" width="100" height="100" src="https://example.com/safemoney-logo.png">
+<img align="left" width="100" height="100" src="https://raw.githubusercontent.com/soymatta/safemoney/main/assets/imgs/icon.png">
 
 SafeMoney es una aplicación de control de presupuesto diseñada para ayudarte a administrar tus gastos de manera eficiente. Con esta aplicación, los usuarios pueden agregar y clasificar sus gastos, así como realizar un seguimiento de su progreso en relación con su presupuesto establecido.<br><br>
 

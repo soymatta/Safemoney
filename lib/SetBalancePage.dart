@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safemoney/main.dart';
 import 'HomePage.dart';
 
 class SetBalancePage extends StatefulWidget {
@@ -8,11 +9,22 @@ class SetBalancePage extends StatefulWidget {
 
   const SetBalancePage({super.key});
 
+  static TextEditingController _controller = TextEditingController();
+
   @override
   State<SetBalancePage> createState() => _SetBalancePageState();
+
+  
 }
 
 class _SetBalancePageState extends State<SetBalancePage> {
+
+  String balance = '';
+
+  Future<void> saveBalance() async {
+    await saveData('balance', balance);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,13 +86,19 @@ class _SetBalancePageState extends State<SetBalancePage> {
                     Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 40, 0),
                         child: TextField(
+                          controller: SetBalancePage._controller,
                           decoration: const InputDecoration(
                               labelText: "Enter your current balance"),
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          onChanged: (value) {},
+                          onChanged: (newvalue) {
+                            setState(() {
+                              balance = newvalue;
+                            });
+                            saveBalance();
+                          },
                         )),
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),

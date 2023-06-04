@@ -6,19 +6,16 @@ import 'package:flutter/services.dart';
 class Income {
   String type;
   double amount;
-  int frequency;
 
   Income({
     required this.type,
     required this.amount,
-    required this.frequency,
   });
 
   Map<String, dynamic> toJson() {
     return {
       'type': type,
       'amount': amount,
-      'frequency': frequency,
     };
   }
 
@@ -26,7 +23,6 @@ class Income {
     return Income(
       type: json['type'],
       amount: json['amount'],
-      frequency: json['frequency'],
     );
   }
 }
@@ -42,19 +38,16 @@ class _AddIncomeViewState extends State<AddIncomeView> {
   final _formKey = GlobalKey<FormState>();
   final _typeController = TextEditingController();
   final _amountController = TextEditingController();
-  final _frequencyController = TextEditingController();
 
   void _addIncome() async {
     if (_formKey.currentState!.validate()) {
       final type = _typeController.text;
       final amount = double.parse(_amountController.text);
-      final frequency = int.parse(_frequencyController.text);
 
       // Crear una nueva instancia de ingreso
       final newIncome = Income(
         type: type,
         amount: amount,
-        frequency: frequency,
       );
 
       // Obtener la lista de ingresos actual de shared_preferences
@@ -81,7 +74,6 @@ class _AddIncomeViewState extends State<AddIncomeView> {
       // Limpiar los campos del formulario
       _typeController.clear();
       _amountController.clear();
-      _frequencyController.clear();
     }
   }
 
@@ -89,7 +81,6 @@ class _AddIncomeViewState extends State<AddIncomeView> {
   void dispose() {
     _typeController.dispose();
     _amountController.dispose();
-    _frequencyController.dispose();
     super.dispose();
   }
 
@@ -133,23 +124,6 @@ class _AddIncomeViewState extends State<AddIncomeView> {
                   return null;
                 },
               ),
-              TextFormField(
-                controller: _frequencyController,
-                decoration: InputDecoration(labelText: 'Frequency (Days)'),
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ],
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the frequency in days';
-                  }
-                  if (int.tryParse(value) == null) {
-                    return 'Please enter a valid frequency in days';
-                  }
-                  return null;
-                },
-              ),
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _addIncome,
@@ -161,4 +135,6 @@ class _AddIncomeViewState extends State<AddIncomeView> {
       ),
     );
   }
+  
+  void showNotification(String s) {}
 }

@@ -16,17 +16,26 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String currency = "Select an option..."; // Valor inicial mientras se carga
+  String Balance = '';
 
   @override
   void initState() {
     super.initState();
     loadCurrency();
+    loadBalance();
   }
 
   Future<void> loadCurrency() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       currency = prefs.getString('currency') ?? 'Select an option...';
+    });
+  }
+
+  Future<void> loadBalance() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      Balance = prefs.getString('balance') ?? '';
     });
   }
 
@@ -65,7 +74,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Balance:',
+              'Balance: $Balance',
               style: GoogleFonts.openSans(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,

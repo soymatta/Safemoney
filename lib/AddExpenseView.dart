@@ -156,4 +156,6 @@ class _AddExpenseViewState extends State<AddExpenseView> {
       ),
     );
   }
+  
+  void showNotification(String s) {}
 }

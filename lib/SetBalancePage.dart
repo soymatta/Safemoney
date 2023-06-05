@@ -9,7 +9,7 @@ class SetBalancePage extends StatefulWidget {
 
   const SetBalancePage({super.key});
 
-  static TextEditingController _controller = TextEditingController();
+  static final TextEditingController _controller = TextEditingController();
 
   @override
   State<SetBalancePage> createState() => _SetBalancePageState();

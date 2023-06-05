@@ -1,8 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 import 'package:flutter/services.dart';
 
 class Income {
@@ -16,28 +14,57 @@ class Income {
 }
 
 class AddIncomeView extends StatefulWidget {
-  const AddIncomeView({Key? key}) : super(key: key);
+  static const String routeName = 'Add a new Income';
+
+  const AddIncomeView({super.key});
 
   @override
   _AddIncomeViewState createState() => _AddIncomeViewState();
 }
 
 class _AddIncomeViewState extends State<AddIncomeView> {
-
- String incomeName = '';
+  String incomeName = '';
   int incomeAmount = 0;
+
+  final TextEditingController _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Income'),
+        title: const Text('Add Income'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
-        child: 
+        padding: const EdgeInsets.all(16),
+        child: Column(children: [
+          TextField(
+            controller: _textController,
+            decoration: const InputDecoration(
+              labelText: 'Name of income',
+            ),
+            onChanged: (value) {
+              setState(() {
+                incomeName = value;
+              });
+            },
+          ),
+          TextField(
+            controller: _textController,
+            decoration: const InputDecoration(
+              labelText: 'Amount of money',
+            ),
+            keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly
+            ],
+            onChanged: (value) {
+              setState(() {
+                incomeAmount = int.parse(value);
+              });
+            },
+          ),
+        ]),
       ),
     );
   }
-
 }

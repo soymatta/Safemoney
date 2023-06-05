@@ -58,11 +58,12 @@ class _WelcomePageState extends State<WelcomePage> {
                         padding: const EdgeInsets.all(8),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(75),
-                          child: Image.asset(
-                            'assets/imgs/icon.png',
-                            width: 1505,
-                            height: 150,
-                            fit: BoxFit.cover,
+                          child: Center(
+                            child: Image.asset(
+                              'assets/imgs/icon.png',
+                              width: 95,
+                              height: 100,
+                            ),
                           ),
                         ),
                       ),

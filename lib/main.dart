@@ -16,7 +16,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green),
       ),
-      initialRoute: WelcomePage.routeName,
+      initialRoute: HomePage.routeName,
       routes: {
         WelcomePage.routeName: (context) => const WelcomePage(),
         HomePage.routeName: (context) => const HomePage(),

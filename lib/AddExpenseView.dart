@@ -27,6 +27,8 @@ class _AddExpenseViewState extends State<AddExpenseView> {
   int expenseAmount = 0;
 
   final TextEditingController _textController = TextEditingController();
+  final TextEditingController _textControllerDigit = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,7 @@ class _AddExpenseViewState extends State<AddExpenseView> {
             },
           ),
           TextField(
-            controller: _textController,
+            controller: _textControllerDigit,
             decoration: const InputDecoration(
               labelText: 'Amount of money',
             ),
@@ -63,6 +65,25 @@ class _AddExpenseViewState extends State<AddExpenseView> {
               });
             },
           ),
+          TextField(
+            controller: _searchController,
+            decoration: InputDecoration(
+              labelText: "Search",
+              hintText: "Search",
+              prefixIcon: Icon(Icons.search),
+              suffixIcon: _searchController.text.isEmpty
+                  ? null
+                  : InkWell(
+                      onTap: () => _searchController.clear(),
+                      child: Icon(Icons.clear),
+                    ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10.0),
+                ),
+              ),
+            ),
+          )
         ]),
       ),
     );

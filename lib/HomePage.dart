@@ -4,7 +4,14 @@ import 'package:safemoney/AddExpenseView.dart';
 import 'package:safemoney/AddIncomeView.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'SettingsView.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:flutter_advanced_segment/flutter_advanced_segment.dart';
+
+// Advanced segment
+enum Segment {
+  all,
+  starred,
+}
+// Advanced segment
 
 class HomePage extends StatefulWidget {
   static const String routeName = 'Dashboard';
@@ -19,9 +26,7 @@ class _HomePageState extends State<HomePage> {
   String currency = "Select an option..."; // Valor inicial mientras se carga
   String balance = '';
 
-// CODIGO DE GOOGLE NAV
-  int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  final _widgetOptions = <Widget>[
     Text(
       'Widget 1',
     ),
@@ -29,8 +34,10 @@ class _HomePageState extends State<HomePage> {
       'Widget 2',
     ),
   ];
-// CODIGO DE GOOGLE NAV
 
+  // Advanced segment
+  final _selectedSegment = ValueNotifier(Segment.all);
+  // Advanced segment
   @override
   void initState() {
     super.initState();
@@ -85,7 +92,7 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 decoration: BoxDecoration(
@@ -172,6 +179,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
+                          SizedBox(
+                            width: 3,
+                          ),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -214,69 +224,46 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height -
-                      kToolbarHeight -
-                      kBottomNavigationBarHeight -
-                      270,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      _widgetOptions.elementAt(_selectedIndex),
-                    ],
-                  ),
+              SizedBox(height: 20),
+              AdvancedSegment(
+                controller: _selectedSegment,
+                segments: {
+                  Segment.all: 'Income',
+                  Segment.starred: 'Expense',
+                },
+                activeStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+                inactiveStyle: TextStyle(
+                  color: Colors.white54,
+                ),
+                backgroundColor: const Color(0xFF43E576),
+                sliderColor: Colors.green,
+              ),
+              SizedBox(height: 20),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height -
+                    kToolbarHeight -
+                    kBottomNavigationBarHeight -
+                    270,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    ValueListenableBuilder<Segment>(
+                      valueListenable: _selectedSegment,
+                      builder: (context, value, child) {
+                        return Center(child: _widgetOptions[value.index]);
+                      },
+                    ),
+                  ],
                 ),
               ),
             ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 20,
-              color: Colors.black.withOpacity(.1),
-            )
-          ],
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-            child: GNav(
-              rippleColor: Colors.grey[300]!,
-              hoverColor: Colors.grey[100]!,
-              gap: 8,
-              activeColor: Colors.black,
-              iconSize: 24,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: const Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.grey[100]!,
-              color: Colors.black,
-              tabs: const [
-                GButton(
-                  icon: Icons.trending_up,
-                  text: 'Income',
-                ),
-                GButton(
-                  icon: Icons.trending_down,
-                  text: 'Expense',
-                ),
-              ],
-              selectedIndex: _selectedIndex,
-              onTabChange: (index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-            ),
           ),
         ),
       ),

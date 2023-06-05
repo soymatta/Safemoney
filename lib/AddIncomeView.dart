@@ -27,6 +27,7 @@ class _AddIncomeViewState extends State<AddIncomeView> {
   int incomeAmount = 0;
 
   final TextEditingController _textController = TextEditingController();
+  final TextEditingController _textControllerDigit = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _AddIncomeViewState extends State<AddIncomeView> {
             },
           ),
           TextField(
-            controller: _textController,
+            controller: _textControllerDigit,
             decoration: const InputDecoration(
               labelText: 'Amount of money',
             ),

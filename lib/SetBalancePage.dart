@@ -13,12 +13,9 @@ class SetBalancePage extends StatefulWidget {
 
   @override
   State<SetBalancePage> createState() => _SetBalancePageState();
-
-  
 }
 
 class _SetBalancePageState extends State<SetBalancePage> {
-
   String balance = '';
 
   Future<void> saveBalance() async {
@@ -61,7 +58,8 @@ class _SetBalancePageState extends State<SetBalancePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
@@ -73,7 +71,8 @@ class _SetBalancePageState extends State<SetBalancePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Text(
                         'Set up your balance',
                         style: GoogleFonts.openSans(
@@ -84,7 +83,8 @@ class _SetBalancePageState extends State<SetBalancePage> {
                       ),
                     ),
                     Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 40, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(40, 0, 40, 0),
                         child: TextField(
                           controller: SetBalancePage._controller,
                           decoration: const InputDecoration(
@@ -101,7 +101,8 @@ class _SetBalancePageState extends State<SetBalancePage> {
                           },
                         )),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
                       child: Text(
                         'Your current currency can then be changed in settings, all currency data will be displayed in the current settings.',
                         style: GoogleFonts.openSans(

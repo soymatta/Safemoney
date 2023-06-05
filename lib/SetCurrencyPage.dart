@@ -54,7 +54,8 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 60),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
@@ -66,7 +67,8 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Text(
                         'Select your currency',
                         style: GoogleFonts.openSans(
@@ -97,7 +99,8 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                       }).toList(),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(44, 10, 44, 10),
                       child: Text(
                         'Your current currency can then be changed in settings, all currency data will be displayed in the current settings.',
                         style: GoogleFonts.openSans(
@@ -137,8 +140,8 @@ class _SetCurrencyPageState extends State<SetCurrencyPage> {
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   title: const Text('Invalid selection'),
-                                  content:
-                                      const Text('Please select a different option.'),
+                                  content: const Text(
+                                      'Please select a different option.'),
                                   actions: [
                                     TextButton(
                                       onPressed: () {

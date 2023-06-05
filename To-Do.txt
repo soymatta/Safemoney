@@ -2,5 +2,4 @@
 - Colocar la divisa con su abreviatura 
 - Modificar el balance segun se agrega un Ingreso o un Gasto
 - Hacer pagina de AddIncome y _AddExpenseView
-- Mostrar de manera bonita el balance
 - Colocar Grafica de Tiempo-Balance en dashboard

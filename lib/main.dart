@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:safemoney/AddExpenseView.dart';
+import 'package:safemoney/AddIncomeView.dart';
+import 'package:safemoney/ExpenseHistoryView.dart';
 import 'package:safemoney/HomePage.dart';
+import 'package:safemoney/IncomeHistoryView.dart';
 import 'package:safemoney/SettingsView.dart';
 import 'WelcomePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,6 +33,10 @@ class MyApp extends StatelessWidget {
         WelcomePage.routeName: (context) => const WelcomePage(),
         HomePage.routeName: (context) => const HomePage(),
         SettingsView.routeName: (context) => const SettingsView(),
+        AddExpenseView.routeName: (context) => const AddExpenseView(),
+        AddIncomeView.routeName: (context) => const AddIncomeView(),
+        ExpenseHistoryView.routeName: (context) => const ExpenseHistoryView(),
+        IncomeHistoryView.routeName: (context) => const IncomeHistoryView(),
       },
     );
   }

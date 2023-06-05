@@ -13,7 +13,9 @@ class Income {
 }
 
 class IncomeHistoryView extends StatefulWidget {
-  const IncomeHistoryView({Key? key}) : super(key: key);
+  static const String routeName = 'Income logs';
+
+  const IncomeHistoryView({super.key});
 
   @override
   _IncomeHistoryViewState createState() => _IncomeHistoryViewState();
@@ -24,7 +26,7 @@ class _IncomeHistoryViewState extends State<IncomeHistoryView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Income History'),
+        title: const Text('Income History'),
       ),
       // body: // TODOS LOS INCOME SE DEBEN MOSTRAR EN UNA LISTVIEW
     );

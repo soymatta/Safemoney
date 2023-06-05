@@ -13,7 +13,9 @@ class Expense {
 }
 
 class ExpenseHistoryView extends StatefulWidget {
-  const ExpenseHistoryView({Key? key}) : super(key: key);
+  static const String routeName = 'Expense logs';
+
+  const ExpenseHistoryView({super.key});
 
   @override
   _ExpenseHistoryViewState createState() => _ExpenseHistoryViewState();
@@ -24,7 +26,7 @@ class _ExpenseHistoryViewState extends State<ExpenseHistoryView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expense History'),
+        title: const Text('Expense History'),
       ),
       // body: // TODOS LOS EXPENSE SE DEBEN MOSTRAR EN UNA LISTVIEW
     );

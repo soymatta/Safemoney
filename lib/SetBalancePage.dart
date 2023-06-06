@@ -16,10 +16,10 @@ class SetBalancePage extends StatefulWidget {
 }
 
 class _SetBalancePageState extends State<SetBalancePage> {
-  String balance = '';
+  double balance = 0;
 
   Future<void> saveBalance() async {
-    await saveData('balance', balance);
+    await saveData('balance', balance.toString());
   }
 
   @override
@@ -95,7 +95,7 @@ class _SetBalancePageState extends State<SetBalancePage> {
                           ],
                           onChanged: (newvalue) {
                             setState(() {
-                              balance = newvalue;
+                              balance = double.parse(newvalue);
                             });
                             saveBalance();
                           },

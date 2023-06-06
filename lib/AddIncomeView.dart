@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'HomePage.dart';
 
 class Income {
   String name;
@@ -11,6 +12,26 @@ class Income {
     required this.name,
     required this.amount,
   });
+}
+
+class IncomeManager{
+
+  static final IncomeManager _instance = IncomeManager._internal();
+
+  factory IncomeManager() {
+    return _instance;
+  }
+
+  IncomeManager._internal();
+
+  List<Income> _incomes = [];
+
+  List<Income> get incomes => _incomes;
+
+  void addIncome(Income income) {
+    _incomes.add(income);
+  }
+
 }
 
 class AddIncomeView extends StatefulWidget {
@@ -24,10 +45,23 @@ class AddIncomeView extends StatefulWidget {
 
 class _AddIncomeViewState extends State<AddIncomeView> {
   String incomeName = '';
-  int incomeAmount = 0;
+  double incomeAmount = 0;
 
   final TextEditingController _textController = TextEditingController();
   final TextEditingController _textControllerDigit = TextEditingController();
+
+  void _addIncome(String Name, double amount){
+
+    IncomeManager().addIncome(Income(name: incomeName, amount: incomeAmount));
+
+
+
+    _textController.clear();
+    _textControllerDigit.clear();
+    
+    print('works');
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +94,16 @@ class _AddIncomeViewState extends State<AddIncomeView> {
             ],
             onChanged: (value) {
               setState(() {
-                incomeAmount = int.parse(value);
+                incomeAmount = double.parse(value);
               });
             },
           ),
+          TextButton(onPressed: () {
+            _addIncome(incomeName, incomeAmount);
+            HomePage.total = HomePage.total + incomeAmount;
+            print(HomePage.total);
+            
+          }, child: Text('Agregar Ingreso'))
         ]),
       ),
     );

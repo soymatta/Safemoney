@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safemoney/AddExpenseView.dart';
 import 'package:safemoney/AddIncomeView.dart';
+import 'package:safemoney/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'SettingsView.dart';
 import 'package:flutter_advanced_segment/flutter_advanced_segment.dart';
@@ -16,6 +17,8 @@ enum Segment {
 class HomePage extends StatefulWidget {
   static const String routeName = 'Dashboard';
 
+  static double total = 0;
+
   const HomePage({super.key});
 
   @override
@@ -24,7 +27,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String currency = "Select an option..."; // Valor inicial mientras se carga
-  String balance = '';
+
+  static double balance = 0;
 
   final _widgetOptions = <Widget>[
     Text(
@@ -55,7 +59,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> loadBalance() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      balance = prefs.getString('balance') ?? '';
+      balance = prefs.getDouble('balance') ?? 0;
     });
   }
 
@@ -83,6 +87,10 @@ class _HomePageState extends State<HomePage> {
               ).then((_) {
                 // Actualizar el valor de currency después de regresar de SettingsView
                 loadCurrency();
+                balance += HomePage.total;
+                saveData('balance', balance.toString());
+                loadBalance();
+                
               });
             },
           ),
@@ -130,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(
-                        balance,
+                        '$balance',
                         style: GoogleFonts.openSans(
                           fontSize: 36,
                           fontWeight: FontWeight.w600,

@@ -31,10 +31,10 @@ class _HomePageState extends State<HomePage> {
   static double balance = 0;
 
   final _widgetOptions = <Widget>[
-    Text(
+    const Text(
       'Widget 1',
     ),
-    Text(
+    const Text(
       'Widget 2',
     ),
   ];
@@ -85,7 +85,6 @@ class _HomePageState extends State<HomePage> {
                   builder: (context) => const SettingsView(),
                 ),
               ).then((_) {
-                // Actualizar el valor de currency después de regresar de SettingsView
                 loadCurrency();
                 balance += HomePage.total;
                 saveData('balance', balance.toString());
@@ -187,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 3,
                           ),
                           GestureDetector(
@@ -232,24 +231,24 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               AdvancedSegment(
                 controller: _selectedSegment,
-                segments: {
+                segments: const {
                   Segment.all: 'Income',
                   Segment.starred: 'Expense',
                 },
-                activeStyle: TextStyle(
+                activeStyle: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
                 ),
-                inactiveStyle: TextStyle(
+                inactiveStyle: const TextStyle(
                   color: Colors.white54,
                 ),
                 backgroundColor: const Color(0xFF43E576),
                 sliderColor: Colors.green,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height -

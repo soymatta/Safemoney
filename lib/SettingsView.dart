@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:safemoney/ExpenseHistoryView.dart';
-import 'package:safemoney/IncomeHistoryView.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsView extends StatefulWidget {
   static const String routeName = 'Settings';
 
-  const SettingsView({Key? key}) : super(key: key);
+  const SettingsView({super.key});
 
   @override
-  _SettingsViewState createState() => _SettingsViewState();
+  State<SettingsView> createState() => _SettingsViewState();
 }
 
 class _SettingsViewState extends State<SettingsView> {
@@ -75,7 +73,8 @@ class _SettingsViewState extends State<SettingsView> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: const Text('Invalid selection'),
-                        content: const Text('Please select a different option.'),
+                        content:
+                            const Text('Please select a different option.'),
                         actions: [
                           TextButton(
                             onPressed: () {
@@ -107,84 +106,6 @@ class _SettingsViewState extends State<SettingsView> {
             const Divider(
               color: Colors.grey,
               thickness: 2.0,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const IncomeHistoryView(),
-                  ),
-                );
-              },
-              child: Text(
-                'Income Log  ',
-                style: GoogleFonts.openSans(
-                  decoration: TextDecoration.underline,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ExpenseHistoryView(),
-                  ),
-                );
-              },
-              child: Text(
-                'Expense Log  ',
-                style: GoogleFonts.openSans(
-                  decoration: TextDecoration.underline,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            const Divider(
-              color: Colors.grey,
-              thickness: 2.0,
-            ),
-            GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Confirm'),
-                      content:
-                          const Text('Are you sure you want to delete all data?'),
-                      actions: [
-                        TextButton(
-                          child: const Text('No'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        TextButton(
-                          child: const Text('Yes'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Text(
-                'Clear All Data',
-                style: GoogleFonts.openSans(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.red,
-                ),
-              ),
             ),
           ],
         ),

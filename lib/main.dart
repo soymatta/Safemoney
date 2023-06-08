@@ -1,9 +1,10 @@
-// PAQUETES
+// DEPENDENCIAS
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // PAGINAS
-import 'WelcomePage.dart';
+import 'src/welcomePage.dart';
 
 void main() {
   runApp(const MyApp());

@@ -21,7 +21,6 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   String _currency = 'Select an option';
   int _balance = 0;
-  int temBalance = 0;
 
   Future<void> _loadBalance() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

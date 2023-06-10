@@ -35,7 +35,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
     _textController.dispose();
     _textControllerDigit.dispose();
     super.dispose();
-    loadExpenseList();
   }
 
   Future<void> loadExpenseList() async {

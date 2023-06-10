@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'dashboardPage.dart';
 
 class SetBalancePage extends StatefulWidget {
-  static const routeName = '';
+  static const routeName = 'SetBalance';
 
   const SetBalancePage({Key? key}) : super(key: key);
 

@@ -1,6 +1,9 @@
 // DEPENDENCIAS
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:safemoney/src/addIncomePage.dart';
+import 'package:safemoney/src/dashboardPage.dart';
+import 'package:safemoney/src/setCurrencyPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // PAGINAS
@@ -27,6 +30,9 @@ class MyApp extends StatelessWidget {
       initialRoute: WelcomePage.routeName,
       routes: {
         WelcomePage.routeName: (context) => const WelcomePage(),
+        SetCurrencyPage.routeName: (context) => const SetCurrencyPage(),
+        DashboardPage.routeName: (context) => const DashboardPage(),
+        AddIncomePage.routeName: (context) => const AddIncomePage(),
       },
     );
   }

@@ -35,7 +35,6 @@ class _AddIncomePageState extends State<AddIncomePage> {
     _textController.dispose();
     _textControllerDigit.dispose();
     super.dispose();
-    loadIncomeList();
   }
 
   Future<void> loadIncomeList() async {
@@ -198,7 +197,7 @@ class _AddIncomePageState extends State<AddIncomePage> {
                                   StatusAlert.show(
                                     context,
                                     duration: const Duration(seconds: 1),
-                                    title: 'Insert a valide name',
+                                    title: 'Insert a valid name',
                                   );
                                   return;
                                 }
@@ -219,7 +218,7 @@ class _AddIncomePageState extends State<AddIncomePage> {
                                 _textControllerDigit.clear();
                                 _textController.clear();
 
-                                temBalance = _balance -
+                                temBalance = _balance +
                                     incomeAmount; // Guarda el calculo del balance en una variable
 
                                 setState(() {

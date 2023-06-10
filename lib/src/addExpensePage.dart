@@ -79,7 +79,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.only(left: 12, top: 20),
               child: Row(
                 children: [
                   IconButton(
